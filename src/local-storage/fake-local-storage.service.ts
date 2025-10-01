@@ -2,11 +2,19 @@ import { LocalStorageService } from "./local-storage.service";
 
 export class FakeLocalStorageService implements LocalStorageService {
     key?: string
-    room?: string
+    newItem?: string
+
+    item? = '[{"id":"room-002","name":"Roomate"}]'
 
     setItem(key: string, value: string): void {
         this.key = key
-        this.room = value
+        this.newItem = value
+    }
+
+    getItem(key: string): string | undefined {
+        this.key = key
+
+        return this.item
     }
 
 }

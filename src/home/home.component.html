@@ -1,0 +1,7 @@
+<input type="text" [(ngModel)]="roomName" data-testid="room-name" />
+<button data-testid="create-room" (click)="createRoom()">Create room</button>
+@for (room of roomList.rooms; track room.id) {
+<button data-testid="existing-room" (click)="routerService.navigate(`/rooms/${room.id}`)">
+  {{ room.name }}
+</button>
+}

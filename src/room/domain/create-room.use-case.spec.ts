@@ -2,12 +2,20 @@ import { CreateRoomUseCase } from "./create-room.use-case"
 import { FakeRoomService } from "./fake-room.service"
 
 describe('CreateRoomUseCase', () => {
-    const fakeRoomService = new FakeRoomService()
-    const createRoomUseCase = new CreateRoomUseCase(fakeRoomService)
+    let createRoomUseCase: CreateRoomUseCase
+    let fakeRoomService: FakeRoomService
+
+    beforeEach(() => {
+        fakeRoomService = new FakeRoomService()
+        createRoomUseCase = new CreateRoomUseCase(fakeRoomService)
+    })
 
     it('should create room', async () => {
-        const room = await createRoomUseCase.execute()
+        const roomName = 'Holidays'
+
+        const room = await createRoomUseCase.execute(roomName)
 
         expect(room).toEqual(fakeRoomService.room)
+        expect(fakeRoomService.roomName).toEqual(roomName)
     })
 })
