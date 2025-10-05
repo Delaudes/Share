@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CreateRoomUseCase } from '../room/domain/create-room.use-case';
 import { GetRoomListUseCase } from '../room/domain/get-room-list.use-case';
@@ -9,9 +9,9 @@ import { ROUTER_SERVICE_TOKEN } from '../router/router.service';
   selector: 'app-home',
   imports: [FormsModule],
   templateUrl: './home.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
-
   protected roomName = ''
   protected roomList = new RoomList([])
 

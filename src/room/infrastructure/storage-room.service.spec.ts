@@ -1,4 +1,3 @@
-import { Builder } from "builder-pattern"
 import { FakeLocalStorageService } from "../../local-storage/fake-local-storage.service"
 import { FakeUuidService } from "../../uuid/fake-uuid.service"
 import { Room } from "../domain/room"
@@ -21,9 +20,9 @@ describe('StorageRoomService', () => {
 
         const room = await storageRoomService.create(roomName)
 
-        expect(room).toEqual(Builder<Room>().id(fakeUuidService.uuid).name(roomName).build())
-        expect(fakeLocalStorageService.key).toEqual('rooms')
-        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"room-002","name":"Roomate"},{"id":"room-001","name":"${roomName}"}]`)
+        expect(room).toEqual(new Room(fakeUuidService.uuid, roomName, []))
+        expect(fakeLocalStorageService.key).toEqual('share')
+        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"room-002","name":"Roomate","payers":[]},{"id":"room-001","name":"${roomName}","payers":[]}]`)
     })
 
     it('should create first room in storage', async () => {
@@ -32,7 +31,7 @@ describe('StorageRoomService', () => {
 
         await storageRoomService.create('Holidays')
 
-        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"room-001","name":"${roomName}"}]`)
+        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"room-001","name":"${roomName}","payers":[]}]`)
     })
 
     it('should fetch room from storage', async () => {
@@ -41,7 +40,7 @@ describe('StorageRoomService', () => {
         const room = await storageRoomService.fetch(roomId)
 
         expect(room).toBeDefined()
-        expect(fakeLocalStorageService.key).toEqual('rooms')
+        expect(fakeLocalStorageService.key).toEqual('share')
     })
 
     it('should fetch undefined room from storage', async () => {
@@ -56,7 +55,7 @@ describe('StorageRoomService', () => {
         const roomList = await storageRoomService.fetchAll()
 
         expect(roomList).toBeDefined()
-        expect(fakeLocalStorageService.key).toEqual('rooms')
+        expect(fakeLocalStorageService.key).toEqual('share')
     })
 
     it('should fetch undefined roomList from storage', async () => {
@@ -66,4 +65,5 @@ describe('StorageRoomService', () => {
 
         expect(roomList).toEqual(new RoomList([]))
     })
+
 })

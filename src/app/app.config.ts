@@ -3,6 +3,9 @@ import { provideRouter } from '@angular/router';
 
 import { LOCAL_STORAGE_SERVICE_TOKEN } from '../local-storage/local-storage.service';
 import { RealLocalStorageService } from '../local-storage/real-local-storage.service';
+import { AddPayerUseCase } from '../payer/domain/add-payer.use-case';
+import { PAYER_SERVICE_TOKEN } from '../payer/domain/payer.service';
+import { StoragePayerService } from '../payer/infrastructure/storage-payer.service';
 import { CreateRoomUseCase } from '../room/domain/create-room.use-case';
 import { GetRoomListUseCase } from '../room/domain/get-room-list.use-case';
 import { LoadRoomUseCase } from '../room/domain/load-room.use-case';
@@ -43,6 +46,11 @@ export const appConfig: ApplicationConfig = {
       deps: [LOCAL_STORAGE_SERVICE_TOKEN, UUID_SERVICE_TOKEN]
     },
     {
+      provide: PAYER_SERVICE_TOKEN,
+      useClass: StoragePayerService,
+      deps: [LOCAL_STORAGE_SERVICE_TOKEN]
+    },
+    {
       provide: CreateRoomUseCase,
       deps: [ROOM_SERVICE_TOKEN]
     },
@@ -53,6 +61,11 @@ export const appConfig: ApplicationConfig = {
     {
       provide: GetRoomListUseCase,
       deps: [ROOM_SERVICE_TOKEN]
+    },
+
+    {
+      provide: AddPayerUseCase,
+      deps: [PAYER_SERVICE_TOKEN, ROOM_STORE_TOKEN]
     },
   ]
 };

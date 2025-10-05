@@ -1,3 +1,4 @@
+import { Payer } from "../../payer/domain/payer";
 import { Room } from "./room";
 import { RoomStore } from "./room.store";
 
@@ -12,4 +13,7 @@ export class FakeRoomStore implements RoomStore {
         this.room = room
     }
 
+    addPayer(payer: Payer): void {
+        this.room?.payers.push(payer)
+    }
 }

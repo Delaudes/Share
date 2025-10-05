@@ -3,8 +3,8 @@ import { Room } from "./room";
 import { RoomList } from "./room-list";
 
 export interface RoomService {
-    create(name: string): Promise<Room>
-    fetch(id: string): Promise<Room | undefined>
+    create(roomName: string): Promise<Room>
+    fetch(roomId: string): Promise<Room | undefined>
     fetchAll(): Promise<RoomList>
 }
 

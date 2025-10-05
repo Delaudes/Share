@@ -4,7 +4,7 @@ export class FakeLocalStorageService implements LocalStorageService {
     key?: string
     newItem?: string
 
-    item? = '[{"id":"room-002","name":"Roomate"}]'
+    item? = '[{"id":"room-002","name":"Roomate","payers":[]}]'
 
     setItem(key: string, value: string): void {
         this.key = key
