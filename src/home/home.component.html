@@ -2,10 +2,10 @@
   <h1 class="font-bold text-4xl place-self-center text-cyan-700">$hare</h1>
   <h2 class="text-xs place-self-center text-amber-700 -mt-1.5">split money easy</h2>
 </div>
-<div class="mt-5">
+<div class="mt-5 mb-16">
   @for (room of roomList.rooms; track room.id) {
   <button
-    class="text-2xl rounded-xl shadow-sm items-start flex w-full p-3 mb-2 flex-col font-semibold text-gray-700 hover:bg-gray-100 hover:cursor-pointer bg-gray-50"
+    class="text-2xl rounded-xl shadow-sm items-start flex w-full p-3 mb-2 flex-col font-semibold text-gray-700 hover:bg-gray-100 hover:cursor-pointer"
     data-testid="existing-room"
     (click)="routerService.navigate(`/rooms/${room.id}`)"
   >
@@ -14,13 +14,15 @@
   </button>
   }
 </div>
-<div class="mt-5 place-self-center">
+<div
+  class="p-2.5 rounded-sm fixed bottom-2 bg-white left-2 right-2 flex justify-between shadow-sm shadow-gray-700"
+>
   <input
     type="text"
-    placeholder="Your room name"
+    placeholder="new room name"
     [(ngModel)]="roomName"
     data-testid="room-name"
-    class="focus:border-cyan-600 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 p-2 rounded-sm border-gray-600 bg-gray-50"
+    class="focus:border-cyan-700 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 p-2 rounded-sm border-gray-300 bg-gray-50"
   />
   <button
     class="hover:bg-cyan-700 hover:cursor-pointer rounded-2xl px-5 py-1.5 ml-2 bg-cyan-600 text-white font-bold"

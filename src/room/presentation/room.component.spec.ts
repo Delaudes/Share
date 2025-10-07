@@ -63,24 +63,31 @@ describe('RoomComponent', () => {
     expect(fakeRoomService.roomId).toEqual(fakeRouterService.paramValue)
   });
 
+  it('should add payer with name', async () => {
+    const payerName = 'John'
+
+    spectator.typeInElement(payerName, '[data-testid="payer-name"]')
+    await clickAndWait('[data-testid="add-payer"]');
+
+    expect(fakePayerService.payerName).toEqual(payerName)
+  })
+
   it('should display payers', async () => {
     expect(spectator.queryAll(PayerComponent).length).toEqual(0)
 
-    const payerName = 'John'
-    spectator.typeInElement(payerName, '[data-testid="payer-name"]')
-
     await clickAndWait('[data-testid="add-payer"]');
-    spectator.detectChanges()
 
     expect(spectator.queryAll(PayerComponent).length).toEqual(1)
-    spectator.queryAll(PayerComponent).forEach((payerComponent) => {
-      expect(payerComponent.payer().name).toEqual(payerName)
-    })
+
+    await clickAndWait('[data-testid="add-payer"]');
+
+    expect(spectator.queryAll(PayerComponent).length).toEqual(2)
   })
 
   async function clickAndWait(selector: string) {
     spectator.click(selector);
     await Promise.resolve();
     await Promise.resolve();
+    spectator.detectChanges()
   }
 });

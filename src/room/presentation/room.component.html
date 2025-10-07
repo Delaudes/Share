@@ -1,24 +1,28 @@
-<div class="border-b-1 pb-5 border-gray-300">
-  <h1 class="font-bold text-4xl place-self-center text-cyan-700" data-testid="room-name">
-    {{ roomStore.room()?.name }}
-  </h1>
+<div class="mb-16">
+  <div class="border-b-1 pb-5 border-gray-300">
+    <h1 class="font-bold text-4xl place-self-center text-cyan-700" data-testid="room-name">
+      {{ roomStore.room()?.name }}
+    </h1>
+  </div>
+  @for (payer of roomStore.room()?.payers; track $index) {
+  <app-payer [payer]="payer"></app-payer>
+  }
 </div>
-@for (payer of roomStore.room()?.payers; track $index) {
-<app-payer [payer]="payer"></app-payer>
-}
-<div class="mt-5 place-self-center">
+<div
+  class="p-2.5 rounded-sm fixed bottom-2 bg-white left-2 right-2 flex justify-between shadow-sm shadow-gray-700"
+>
   <input
     type="text"
     placeholder="new payer name"
     [(ngModel)]="payerName"
     data-testid="payer-name"
-    class="focus:border-cyan-600 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 p-2 rounded-sm border-gray-600 bg-gray-50"
+    class="focus:border-cyan-700 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 p-2 rounded-sm border-gray-300 bg-gray-50"
   />
   <button
     class="hover:bg-cyan-700 hover:cursor-pointer rounded-2xl px-5 py-1.5 ml-2 bg-cyan-600 text-white font-bold"
     data-testid="add-payer"
     (click)="addPayer()"
   >
-    Create
+    Add
   </button>
 </div>

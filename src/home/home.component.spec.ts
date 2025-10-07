@@ -47,7 +47,11 @@ describe('HomeComponent', () => {
     await Promise.resolve();
     spectator.detectChanges()
 
-    expect(spectator.queryAll('[data-testid="existing-room"]').length).toEqual(fakeRoomService.roomList.rooms.length)
+    expect(spectator.queryAll('[data-testid="existing-room"]').length).toEqual(2)
+    spectator.queryAll('[data-testid="existing-room"]').forEach((existingRoom, index) => {
+      expect(existingRoom).toHaveText(fakeRoomService.roomList.rooms[index].name)
+      expect(existingRoom).toHaveText(fakeRoomService.roomList.rooms[index].id)
+    })
 
     await clickAndWait('[data-testid="existing-room"]');
 
