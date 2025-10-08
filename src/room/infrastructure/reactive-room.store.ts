@@ -1,9 +1,11 @@
 import { signal } from "@angular/core";
+import { Expense } from "../../expense/expense";
 import { Payer } from "../../payer/domain/payer";
 import { Room } from "../domain/room";
 import { RoomStore } from "../domain/room.store";
 
 export class ReactiveRoomStore implements RoomStore {
+
     readonly room = signal<Room | undefined>(undefined)
 
     getRoom(): Room | undefined {
@@ -16,6 +18,11 @@ export class ReactiveRoomStore implements RoomStore {
 
     addPayer(payer: Payer): void {
         const newRoom = this.room()?.addPayer(payer)
+        this.setRoom(newRoom)
+    }
+
+    addExpense(expense: Expense, payerId: string): void {
+        const newRoom = this.room()?.addExpense(expense, payerId)
         this.setRoom(newRoom)
     }
 }

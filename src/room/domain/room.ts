@@ -1,3 +1,4 @@
+import { Expense } from "../../expense/expense";
 import { Payer } from "../../payer/domain/payer";
 
 export class Room {
@@ -8,6 +9,16 @@ export class Room {
     }
 
     addPayer(payer: Payer): Room {
-        return new Room(this.id, this.name, [...this.payers, payer])
+        this.payers.push(payer)
+        return new Room(this.id, this.name, this.payers)
+    }
+
+    findPayer(payerId: string): Payer | undefined {
+        return this.payers.find((payer) => payer.is(payerId))
+    }
+
+    addExpense(expense: Expense, payerId: string): Room {
+        this.findPayer(payerId)?.addExpense(expense)
+        return new Room(this.id, this.name, this.payers)
     }
 }

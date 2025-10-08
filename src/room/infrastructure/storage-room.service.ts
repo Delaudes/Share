@@ -24,7 +24,7 @@ export class StorageRoomService implements RoomService {
         const parsedRooms: Room[] = stringRooms ? JSON.parse(stringRooms) : []
         const rooms = parsedRooms.map(parsedRoom => new Room(parsedRoom.id, parsedRoom.name, parsedRoom.payers))
 
-        return rooms.find((room) => room.id === roomId)
+        return rooms.find((room) => room.is(roomId))
     }
 
     async fetchAll(): Promise<RoomList> {

@@ -48,7 +48,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: PAYER_SERVICE_TOKEN,
       useClass: StoragePayerService,
-      deps: [LOCAL_STORAGE_SERVICE_TOKEN]
+      deps: [LOCAL_STORAGE_SERVICE_TOKEN, UUID_SERVICE_TOKEN]
     },
     {
       provide: CreateRoomUseCase,

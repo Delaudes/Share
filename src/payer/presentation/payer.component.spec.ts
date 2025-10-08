@@ -15,7 +15,7 @@ describe("PayerComponent", () => {
     beforeEach(() => {
         spectator = createComponent({
             props: {
-                payer: new Payer('John')
+                payer: new Payer('payer-001', 'John', [])
             }
         })
     });

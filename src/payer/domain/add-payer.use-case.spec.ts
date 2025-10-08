@@ -10,16 +10,16 @@ describe('AddPayerUseCase', () => {
 
     beforeEach(() => {
         fakeRoomStore = new FakeRoomStore()
+        fakeRoomStore.setRoom(new Room('room-001', 'Holidays', []))
         fakePayerService = new FakePayerService()
         addPayerUseCase = new AddPayerUseCase(fakePayerService, fakeRoomStore)
     })
 
     it('should add payer', async () => {
-        fakeRoomStore.setRoom(new Room('room-001', 'Holidays', []))
         const payerName = 'John'
 
         await addPayerUseCase.execute(payerName)
-
+        console.log(fakeRoomStore.getRoom())
         expect(fakeRoomStore.getRoom()?.payers).toContain(fakePayerService.payer)
         expect(fakePayerService.roomId).toEqual(fakeRoomStore.getRoom()?.id)
         expect(fakePayerService.payerName).toEqual(payerName)

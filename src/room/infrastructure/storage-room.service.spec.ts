@@ -22,7 +22,7 @@ describe('StorageRoomService', () => {
 
         expect(room).toEqual(new Room(fakeUuidService.uuid, roomName, []))
         expect(fakeLocalStorageService.key).toEqual('share')
-        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"room-002","name":"Roomate","payers":[]},{"id":"room-001","name":"${roomName}","payers":[]}]`)
+        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"room-002","name":"Roomate","payers":[]},{"id":"${fakeUuidService.uuid}","name":"${roomName}","payers":[]}]`)
     })
 
     it('should create first room in storage', async () => {
@@ -31,7 +31,7 @@ describe('StorageRoomService', () => {
 
         await storageRoomService.create('Holidays')
 
-        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"room-001","name":"${roomName}","payers":[]}]`)
+        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"${fakeUuidService.uuid}","name":"${roomName}","payers":[]}]`)
     })
 
     it('should fetch room from storage', async () => {

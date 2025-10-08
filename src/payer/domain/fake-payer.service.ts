@@ -5,7 +5,7 @@ export class FakePayerService implements PayerService {
     roomId?: string
     payerName?: string
 
-    payer = new Payer('John')
+    payer = new Payer('payer-001', 'John', [])
 
     async add(payerName: string, roomId: string): Promise<Payer> {
         this.roomId = roomId
