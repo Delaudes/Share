@@ -1,4 +1,4 @@
-import { Expense } from "../../expense/expense";
+import { Expense } from "../../expense/domain/expense";
 import { Payer } from "../../payer/domain/payer";
 
 export class Room {

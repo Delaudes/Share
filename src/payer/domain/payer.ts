@@ -1,4 +1,4 @@
-import { Expense } from "../../expense/expense"
+import { Expense } from "../../expense/domain/expense"
 
 export class Payer {
     constructor(readonly id: string, readonly name: string, readonly expenses: Expense[]) { }

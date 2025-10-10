@@ -6,7 +6,11 @@
     "Share": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": { "type": "component" },
+        "@schematics/angular:component": {
+          "type": "component",
+          "style": "none",
+          "changeDetection": "OnPush"
+        },
         "@schematics/angular:directive": { "type": "directive" },
         "@schematics/angular:service": { "type": "service" },
         "@schematics/angular:guard": { "typeSeparator": "." },

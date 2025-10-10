@@ -1,5 +1,5 @@
 import { LocalStorageService } from "../../local-storage/local-storage.service";
-import { Room } from "../../room/domain/room";
+import { mapToRooms } from "../../room/infrastructure/storage-room.mapper";
 import { UuidService } from "../../uuid/uuid.service";
 import { Payer } from "../domain/payer";
 import { PayerService } from "../domain/payer.service";
@@ -11,10 +11,9 @@ export class StoragePayerService implements PayerService {
         const payer = new Payer(this.uuidService.generate(), payerName, [])
 
         const stringRooms = this.localStorageService.getItem('share')
-        const parsedRooms: Room[] = stringRooms ? JSON.parse(stringRooms) : []
-        const rooms = parsedRooms.map(parsedRoom => new Room(parsedRoom.id, parsedRoom.name, parsedRoom.payers))
+        const rooms = mapToRooms(stringRooms);
 
-        rooms.find((room) => room.is(roomId))?.payers.push(payer)
+        rooms.find((room) => room.is(roomId))?.addPayer(payer)
         this.localStorageService.setItem('share', JSON.stringify(rooms))
 
         return payer

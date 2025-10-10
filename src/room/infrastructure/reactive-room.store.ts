@@ -1,5 +1,5 @@
 import { signal } from "@angular/core";
-import { Expense } from "../../expense/expense";
+import { Expense } from "../../expense/domain/expense";
 import { Payer } from "../../payer/domain/payer";
 import { Room } from "../domain/room";
 import { RoomStore } from "../domain/room.store";

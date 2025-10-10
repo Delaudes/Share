@@ -1,5 +1,7 @@
 import { provideZonelessChangeDetection } from "@angular/core";
 import { createComponentFactory, Spectator } from "@ngneat/spectator";
+import { AddExpenseUseCase } from "../../expense/domain/add-expense.use-case";
+import { FakeExpenseService } from "../../expense/domain/fake-expense.service";
 import { AddPayerUseCase } from "../../payer/domain/add-payer.use-case";
 import { FakePayerService } from "../../payer/domain/fake-payer.service";
 import { PayerComponent } from "../../payer/presentation/payer.component";
@@ -41,6 +43,7 @@ describe('RoomComponent', () => {
       provide: ROOM_STORE_TOKEN,
       useFactory: () => reactiveRoomStore
     },
+    ...provideChildrensDependencies()
     ],
   })
 
@@ -90,4 +93,14 @@ describe('RoomComponent', () => {
     await Promise.resolve();
     spectator.detectChanges()
   }
+
+  function provideChildrensDependencies() {
+    return [
+      {
+        provide: AddExpenseUseCase,
+        useFactory: () => new AddExpenseUseCase(new FakeExpenseService(), reactiveRoomStore)
+      }]
+  }
 });
+
+

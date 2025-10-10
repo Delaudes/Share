@@ -3,13 +3,11 @@
     <span>{{ payer().name }}</span
     ><button
       class="hover:shadow-gray-700 hover:cursor-pointer bg-gray-50 shadow-sm ml-1 text-cyan-700 flex items-center justify-center p-0.5 rounded-full self-start"
-      data-testid="add-expense"
     >
       <span class="material-icons" style="font-size: 14px">edit</span>
     </button>
     <button
       class="hover:shadow-gray-700 hover:cursor-pointer bg-gray-50 shadow-sm ml-1 text-cyan-700 flex items-center justify-center p-0.5 rounded-full self-start"
-      data-testid="add-expense"
     >
       <span class="material-icons" style="font-size: 14px">delete</span>
     </button>
@@ -21,17 +19,20 @@
       type="text"
       placeholder="new expense name"
       data-testid="expense-name"
+      [(ngModel)]="expenseName"
       class="focus:border-cyan-700 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 p-1 rounded-sm border-gray-300 bg-gray-50 text-xs w-2/3"
     />
     <input
       type="number"
       placeholder="0.00"
       data-testid="expense-amount"
+      [(ngModel)]="expenseAmount"
       class="focus:border-cyan-700 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 ml-1 p-1 rounded-sm border-gray-300 bg-gray-50 text-xs w-1/4"
     />
     <button
       class="hover:shadow-cyan-700 hover:cursor-pointer bg-gray-50 shadow-sm ml-1 text-cyan-700 flex items-center justify-center p-1 rounded-full"
       data-testid="add-expense"
+      (click)="addExpense()"
     >
       <span class="material-icons" style="font-size: 20px">add_task</span>
     </button>

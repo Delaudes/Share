@@ -19,7 +19,7 @@ describe('AddPayerUseCase', () => {
         const payerName = 'John'
 
         await addPayerUseCase.execute(payerName)
-        console.log(fakeRoomStore.getRoom())
+
         expect(fakeRoomStore.getRoom()?.payers).toContain(fakePayerService.payer)
         expect(fakePayerService.roomId).toEqual(fakeRoomStore.getRoom()?.id)
         expect(fakePayerService.payerName).toEqual(payerName)

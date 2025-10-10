@@ -1,10 +1,9 @@
-import { Payer } from "../payer/domain/payer"
-import { FakeRoomStore } from "../room/domain/fake-room.store"
-import { Room } from "../room/domain/room"
+import { Payer } from "../../payer/domain/payer"
+import { FakeRoomStore } from "../../room/domain/fake-room.store"
+import { Room } from "../../room/domain/room"
 import { AddExpenseUseCase } from "./add-expense.use-case"
 import { ExpenseDraft } from "./expense-draft"
 import { FakeExpenseService } from "./fake-expense.service"
-
 
 describe('AddExpenseUseCase', () => {
     let addExpenseUseCase: AddExpenseUseCase

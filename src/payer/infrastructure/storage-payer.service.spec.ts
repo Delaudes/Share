@@ -22,6 +22,6 @@ describe('StoragePayerService', () => {
 
         expect(payer).toEqual(new Payer(fakeUuidService.uuid, payerName, []))
         expect(fakeLocalStorageService.key).toEqual('share')
-        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"${roomId}","name":"Roomate","payers":[{"id":"${fakeUuidService.uuid}","name":"${payerName}","expenses":[]}]}]`)
+        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"${roomId}","name":"Roomate","payers":[{"id":"payer-001","name":"Alice","expenses":[]},{"id":"${fakeUuidService.uuid}","name":"${payerName}","expenses":[]}]}]`)
     })
 })

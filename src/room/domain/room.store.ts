@@ -1,5 +1,5 @@
 import { InjectionToken } from "@angular/core";
-import { Expense } from "../../expense/expense";
+import { Expense } from "../../expense/domain/expense";
 import { Payer } from "../../payer/domain/payer";
 import { ReactiveRoomStore } from "../infrastructure/reactive-room.store";
 import { Room } from "./room";
