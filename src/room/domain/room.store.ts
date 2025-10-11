@@ -9,6 +9,7 @@ export interface RoomStore {
     addPayer(payer: Payer): void;
     getRoom(): Room | undefined
     setRoom(room?: Room): void
+    deleteExpense(expenseId: string): void;
 }
 
 export const ROOM_STORE_TOKEN = new InjectionToken<ReactiveRoomStore>('RoomStore')

@@ -7,6 +7,8 @@ export class FakeExpenseService implements ExpenseService {
     roomId?: string
     expenseDraft?: ExpenseDraft
 
+    expenseId?: string
+
     async add(expenseDraft: ExpenseDraft, roomId: string): Promise<Expense> {
         this.expenseDraft = expenseDraft
         this.roomId = roomId
@@ -14,4 +16,7 @@ export class FakeExpenseService implements ExpenseService {
         return this.expense
     }
 
+    async delete(expenseId: string): Promise<void> {
+        this.expenseId = expenseId
+    }
 }

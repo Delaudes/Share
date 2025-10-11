@@ -10,4 +10,10 @@ export class Payer {
     addExpense(expense: Expense) {
         this.expenses.push(expense)
     }
+
+    deleteExpense(expenseId: string) {
+        const index = this.expenses.findIndex((expense) => expense.is(expenseId))
+        if (index === -1) return
+        this.expenses.splice(index, 1)
+    }
 }

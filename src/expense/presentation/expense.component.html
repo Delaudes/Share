@@ -1,1 +1,20 @@
-<p>expense works!</p>
+<div data-testid="expense" class="flex justify-between text-xs border-1 border-gray-100 py-1 px-2">
+  <span data-testid="expense-name" class="text-cyan-700">{{ expense().name }}</span>
+  <div class="flex">
+    <span data-testid="expense-amount" class="text-amber-700 mr-3">{{ expense().amount }}</span>
+    <!--
+    <button
+      class="hover:shadow-gray-700 hover:cursor-pointer bg-gray-50 shadow-sm ml-1 text-cyan-700 flex items-center justify-center p-0.5 rounded-full self-start"
+    >
+      <span class="material-icons" style="font-size: 14px">edit</span>
+    </button>
+  -->
+    <button
+      data-testid="delete-expense"
+      (click)="deleteExpense()"
+      class="hover:shadow-gray-700 hover:cursor-pointer bg-gray-50 shadow-sm ml-1 text-cyan-700 flex items-center justify-center p-0.5 rounded-full self-start"
+    >
+      <span class="material-icons" style="font-size: 14px">delete</span>
+    </button>
+  </div>
+</div>

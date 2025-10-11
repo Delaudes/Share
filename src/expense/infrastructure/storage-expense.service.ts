@@ -20,4 +20,11 @@ export class StorageExpenseService implements ExpenseService {
 
         return expense
     }
+
+    async delete(expenseId: string): Promise<void> {
+        const stringRooms = this.localStorageService.getItem('share')
+        const rooms = mapToRooms(stringRooms);
+        rooms.forEach((room: Room) => room.deleteExpense(expenseId))
+        this.localStorageService.setItem('share', JSON.stringify(rooms))
+    }
 }

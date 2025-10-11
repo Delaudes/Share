@@ -16,13 +16,22 @@ describe('StorageExpenseService', () => {
     })
 
     it('should add expense to room in storage', async () => {
-        const expenseDraft = new ExpenseDraft('Pizza', 26, 'payer-001')
+        const expenseDraft = new ExpenseDraft('Pizzas', 26, 'payer-001')
         const roomId = 'room-002'
 
         const expense = await storageExpenseService.add(expenseDraft, roomId)
 
         expect(expense).toEqual(new Expense(fakeUuidService.uuid, expenseDraft.name, expenseDraft.amount))
         expect(fakeLocalStorageService.key).toEqual('share')
-        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"${roomId}","name":"Roomate","payers":[{"id":"${expenseDraft.payerId}","name":"Alice","expenses":[{"id":"${fakeUuidService.uuid}","name":"${expenseDraft.name}","amount":${expenseDraft.amount}}]}]}]`)
+        expect(fakeLocalStorageService.newItem).toEqual(`[{"id":"${roomId}","name":"Roomate","payers":[{"id":"${expenseDraft.payerId}","name":"Alice","expenses":[{"id":"expense-001","name":"Groceries","amount":50},{"id":"${fakeUuidService.uuid}","name":"${expenseDraft.name}","amount":${expenseDraft.amount}}]}]}]`)
+    })
+
+    it('should delete expense from room in storage', async () => {
+        const expenseId = 'expense-001'
+
+        await storageExpenseService.delete(expenseId)
+
+        expect(fakeLocalStorageService.key).toEqual('share')
+        expect(fakeLocalStorageService.newItem).not.toContain(expenseId)
     })
 })

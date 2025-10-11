@@ -25,4 +25,9 @@ export class ReactiveRoomStore implements RoomStore {
         const newRoom = this.room()?.addExpense(expense, payerId)
         this.setRoom(newRoom)
     }
+
+    deleteExpense(expenseId: string): void {
+        const newRoom = this.room()?.deleteExpense(expenseId)
+        this.setRoom(newRoom)
+    }
 }

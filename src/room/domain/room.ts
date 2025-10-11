@@ -21,4 +21,9 @@ export class Room {
         this.findPayer(payerId)?.addExpense(expense)
         return new Room(this.id, this.name, this.payers)
     }
+
+    deleteExpense(expenseId: string): Room {
+        this.payers.forEach((payer) => payer.deleteExpense(expenseId))
+        return new Room(this.id, this.name, this.payers)
+    }
 }

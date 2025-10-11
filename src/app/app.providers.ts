@@ -1,4 +1,5 @@
 import { AddExpenseUseCase } from "../expense/domain/add-expense.use-case";
+import { DeleteExpenseUseCase } from "../expense/domain/delete-expense.use-case";
 import { EXPENSE_SERVICE_TOKEN } from "../expense/domain/expense.service";
 import { StorageExpenseService } from "../expense/infrastructure/storage-expense.service";
 import { LOCAL_STORAGE_SERVICE_TOKEN } from "../local-storage/local-storage.service";
@@ -87,5 +88,10 @@ export const EXPENSE_PROVIDERS = [
         provide: AddExpenseUseCase,
         deps: [EXPENSE_SERVICE_TOKEN, ROOM_STORE_TOKEN]
     },
+    {
+        provide: DeleteExpenseUseCase,
+        deps: [EXPENSE_SERVICE_TOKEN, ROOM_STORE_TOKEN]
+
+    }
 ]
 

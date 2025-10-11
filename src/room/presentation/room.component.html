@@ -3,6 +3,7 @@
     <h1 class="font-bold text-4xl place-self-center text-cyan-700" data-testid="room-name">
       {{ roomStore.room()?.name }}
     </h1>
+    <!--
     <button
       class="hover:shadow-gray-700 hover:cursor-pointer bg-gray-50 shadow-sm ml-1 text-cyan-700 flex items-center justify-center p-0.5 rounded-full self-center"
       data-testid="add-expense"
@@ -15,8 +16,8 @@
     >
       <span class="material-icons" style="font-size: 14px">delete</span>
     </button>
-  </div>
-  @for (payer of roomStore.room()?.payers; track $index) {
+  --></div>
+  @for (payer of roomStore.room()?.payers; track payer.id) {
   <app-payer [payer]="payer"></app-payer>
   }
 </div>
@@ -38,3 +39,4 @@
     Add
   </button>
 </div>
+a

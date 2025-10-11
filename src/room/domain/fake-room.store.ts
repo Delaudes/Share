@@ -22,4 +22,8 @@ export class FakeRoomStore implements RoomStore {
     addExpense(expense: Expense, payerId: string): void {
         this.room?.addExpense(expense, payerId)
     }
+
+    deleteExpense(expenseId: string): void {
+        this.room?.deleteExpense(expenseId)
+    }
 }
