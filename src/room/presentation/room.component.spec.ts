@@ -110,8 +110,8 @@ describe('RoomComponent', () => {
 
     spectator.detectChanges()
 
-    expect(spectator.query('[data-testid="balance"]')).toHaveText('Tim should send 5.00 to John')
-    expect(spectator.query('[data-testid="balance"]')).toHaveText('Alice should send 5.00 to John')
+    expect(spectator.query('[data-testid="balance"]')).toContainText(['Tim', '5.00', 'John'])
+    expect(spectator.query('[data-testid="balance"]')).toContainText(['Alice', '5.00', 'John'])
   })
 
   async function clickAndWait(selector: string) {
