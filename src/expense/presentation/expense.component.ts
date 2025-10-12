@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { AmountPipe } from '../../room/pipes/amount.pipe';
 import { DeleteExpenseUseCase } from '../domain/delete-expense.use-case';
 import { Expense } from '../domain/expense';
 
 @Component({
   selector: 'app-expense',
-  imports: [],
+  imports: [AmountPipe],
   templateUrl: './expense.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

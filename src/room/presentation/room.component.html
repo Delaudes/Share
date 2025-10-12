@@ -20,22 +20,53 @@
   @for (payer of roomStore.room()?.payers; track payer.id) {
   <app-payer [payer]="payer"></app-payer>
   }
-</div>
-<div
-  class="p-2.5 rounded-sm fixed bottom-2 bg-white left-2 right-2 flex justify-between shadow-sm shadow-gray-700"
->
-  <input
-    type="text"
-    placeholder="new payer name"
-    [(ngModel)]="payerName"
-    data-testid="payer-name"
-    class="focus:border-cyan-700 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 p-2 rounded-sm border-gray-300 bg-gray-50"
-  />
-  <button
-    class="hover:bg-cyan-700 hover:cursor-pointer rounded-2xl px-5 py-1.5 ml-2 bg-cyan-600 text-white font-bold"
-    data-testid="add-payer"
-    (click)="addPayer()"
+  <div class="p-2 mt-4 bg-amber-50 rounded-sm text-center" data-testid="balance">
+    <span class="place-self-center text-3xl flex font-bold">Balance</span>
+    <div class="flex justify-around text-xs mt-2 pb-2 border-b-1 border-dashed border-gray-300">
+      <span
+        >total :
+        <span
+          class="text-amber-700 font-semibold text-lg"
+          class="text-amber-700 font-bold text-base"
+          >{{ roomStore.room()?.calculateTotalExpenses() | amount }}</span
+        ></span
+      >
+      <span
+        >average :
+        <span
+          class="text-amber-700 font-semibold text-lg"
+          class="text-amber-700 font-bold text-base"
+          >{{ roomStore.room()?.calculateAverageExpensesPerPayer() | amount }}</span
+        ></span
+      >
+    </div>
+    <div class="mt-4">
+      @for (payment of roomStore.room()?.calculateBalance()?.payments; track $index) {
+      <p class="mt-2 text-xs">
+        <span class="font-semibold text-gray-700 text-base">{{ payment.from }}</span> should send
+        <span class="text-amber-700 font-semibold text-base">{{ payment.amount | amount }}</span> to
+        <span class="font-semibold text-gray-700 text-base">{{ payment.to }}</span>
+      </p>
+      }
+    </div>
+  </div>
+
+  <div
+    class="p-2.5 rounded-sm fixed bottom-2 bg-white left-2 right-2 flex justify-between shadow-sm shadow-gray-700"
   >
-    Add
-  </button>
+    <input
+      type="text"
+      placeholder="new payer name"
+      [(ngModel)]="payerName"
+      data-testid="payer-name"
+      class="focus:border-cyan-700 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 p-2 rounded-sm border-gray-300 bg-gray-50"
+    />
+    <button
+      class="hover:bg-cyan-700 hover:cursor-pointer rounded-2xl px-5 py-1.5 ml-2 bg-cyan-600 text-white font-bold"
+      data-testid="add-payer"
+      (click)="addPayer()"
+    >
+      Add
+    </button>
+  </div>
 </div>

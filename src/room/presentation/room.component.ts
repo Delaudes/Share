@@ -5,10 +5,11 @@ import { PayerComponent } from '../../payer/presentation/payer.component';
 import { ROUTER_SERVICE_TOKEN } from '../../router/router.service';
 import { LoadRoomUseCase } from '../domain/load-room.use-case';
 import { ROOM_STORE_TOKEN } from '../domain/room.store';
+import { AmountPipe } from '../pipes/amount.pipe';
 
 @Component({
   selector: 'app-room',
-  imports: [FormsModule, PayerComponent],
+  imports: [FormsModule, PayerComponent, AmountPipe],
   templateUrl: './room.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

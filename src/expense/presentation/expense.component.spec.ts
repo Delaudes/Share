@@ -40,7 +40,7 @@ describe('ExpenseComponent', () => {
 
     it('should display expense name and amount', () => {
         expect(spectator.query('[data-testid="expense-name"]')).toHaveText(spectator.component.expense().name)
-        expect(spectator.query('[data-testid="expense-amount"]')).toHaveText(spectator.component.expense().amount.toString())
+        expect(spectator.query('[data-testid="expense-amount"]')).toHaveText(spectator.component.expense().amount.toFixed(2))
     })
 
     it('should delete expense on button click', async () => {

@@ -16,4 +16,14 @@ export class Payer {
         if (index === -1) return
         this.expenses.splice(index, 1)
     }
+
+    calculateTotalExpenses(): number {
+        return this.expenses.reduce((sum, expense) => {
+            return sum + expense.amount
+        }, 0)
+    }
+
+    calculateDifference(averageExpenses: number): number {
+        return this.calculateTotalExpenses() - averageExpenses
+    }
 }
