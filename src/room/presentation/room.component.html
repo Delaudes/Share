@@ -25,19 +25,15 @@
     <div class="flex justify-around text-xs mt-2 border-gray-300">
       <span
         >total :
-        <span
-          class="text-amber-700 font-semibold text-lg"
-          class="text-amber-700 font-bold text-base"
-          >{{ roomStore.room()?.calculateTotalExpenses() | amount }}</span
-        ></span
+        <span class="text-amber-700 font-semibold text-base">{{
+          roomStore.room()?.calculateTotalExpenses() | amount
+        }}</span></span
       >
       <span
         >average :
-        <span
-          class="text-amber-700 font-semibold text-lg"
-          class="text-amber-700 font-bold text-base"
-          >{{ roomStore.room()?.calculateAverageExpensesPerPayer() | amount }}</span
-        ></span
+        <span class="text-amber-700 font-semibold text-base">{{
+          roomStore.room()?.calculateAverageExpensesPerPayer() | amount
+        }}</span></span
       >
     </div>
     <div class="mt-2">
