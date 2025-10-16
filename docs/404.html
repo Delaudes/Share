@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=./index.html" />
+    <meta charset="utf-8" />
+    <title>404 - Page Not Found</title>
+    <script type="text/javascript">
+      // Récupère le chemin et les paramètres de la page 404
+      var path = window.location.pathname.replace(/\/[^\/]*$/, '');
+      var search = window.location.search || '';
+      var hash = window.location.hash || '';
+
+      // Reconstruit l'URL cible pour Angular
+      var target = '/index.html#' + window.location.pathname.replace(path, '') + search + hash;
+
+      // Redirige vers index.html avec la route en hash
+      window.location.replace(target);
+    </script>
   </head>
   <body>
-    <script>
-      window.location.replace('./index.html' + window.location.search + window.location.hash);
-    </script>
+    <h1>404 - Page not found</h1>
+    <p>Redirection…</p>
   </body>
 </html>
