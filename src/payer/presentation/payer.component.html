@@ -1,19 +1,7 @@
 <div class="rounded-sm shadow-sm w-full p-2 mt-4 font-semibold text-gray-700" data-testid="payer">
   <div class="flex items-center mb-2">
     <span>{{ payer().name }}</span>
-    <!--
-    <button
-      class="hover:shadow-gray-700 hover:cursor-pointer bg-gray-50 shadow-sm ml-1 text-cyan-700 flex items-center justify-center p-0.5 rounded-full self-start"
-    >
-      <span class="material-icons" style="font-size: 14px">edit</span>
-    </button>
-    <button
-      class="hover:shadow-gray-700 hover:cursor-pointer bg-gray-50 shadow-sm ml-1 text-cyan-700 flex items-center justify-center p-0.5 rounded-full self-start"
-    >
-      <span class="material-icons" style="font-size: 14px">delete</span>
-    </button>
-  --></div>
-
+  </div>
   <div class="my-2">
     @for (expense of payer().expenses; track expense.id) {
     <app-expense [expense]="expense"></app-expense>
