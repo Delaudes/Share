@@ -1,19 +1,18 @@
-<div class="rounded-sm shadow-sm w-full p-2 mt-4 font-semibold text-gray-700" data-testid="payer">
-  <div class="flex items-center mb-2">
-    <span>{{ payer().name }}</span>
-  </div>
-  <div class="my-2">
+<div class="rounded-lg shadow-sm w-full p-4 mt-4 font-semibold text-gray-700" data-testid="payer">
+  <h3 class="text-lg font-bold text-gray-700">{{ payer().name }}</h3>
+
+  <div class="my-3">
     @for (expense of payer().expenses; track expense.id) {
     <app-expense [expense]="expense"></app-expense>
     }
   </div>
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center gap-2">
     <input
       type="text"
       placeholder="new expense name"
       data-testid="expense-name"
       [(ngModel)]="expenseName"
-      class="focus:border-cyan-700 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 p-2 rounded-sm border-gray-300 bg-gray-50 text-xs w-2/3"
+      class="p-2 focus:border-cyan-400 placeholder:text-gray-400 outline-none border rounded-lg border-gray-200 text-xs w-2/3 transition-colors"
     />
     <input
       onclick="this.select()"
@@ -21,14 +20,14 @@
       placeholder="0.00"
       data-testid="expense-amount"
       [(ngModel)]="expenseAmount"
-      class="focus:border-cyan-700 hover:bg-gray-100 placeholder:text-gray-400 outline-none border-1 ml-1 p-2 rounded-sm border-gray-300 bg-gray-50 text-xs w-1/4"
+      class="p-2 focus:border-cyan-400 placeholder:text-gray-400 outline-none border rounded-lg border-gray-200 text-xs w-1/4 transition-colors"
     />
     <button
-      class="hover:shadow-cyan-700 hover:cursor-pointer bg-gray-50 shadow-sm ml-1 text-cyan-700 flex items-center justify-center p-2 rounded-full"
+      class="p-2 bg-cyan-700 hover:bg-cyan-800 text-white font-semibold rounded-lg hover:scale-105 transition-all hover:cursor-pointer flex items-center justify-center"
       data-testid="add-expense"
       (click)="addExpense()"
     >
-      <span class="material-icons" style="font-size: 20px">add_task</span>
+      <span class="material-icons" style="font-size: 18px">add_task</span>
     </button>
   </div>
 </div>

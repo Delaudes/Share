@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AddPayerUseCase } from '../../payer/domain/add-payer.use-case';
@@ -10,7 +9,7 @@ import { AmountPipe } from '../pipes/amount.pipe';
 
 @Component({
   selector: 'app-room',
-  imports: [FormsModule, PayerComponent, AmountPipe, NgClass],
+  imports: [FormsModule, PayerComponent, AmountPipe,],
   templateUrl: './room.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
