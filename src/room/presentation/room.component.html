@@ -157,11 +157,11 @@
 
   <!-- Payers Section -->
   <div class="mb-8">
-    <div class="flex items-center gap-3 mb-4 px-1">
+    <div class="flex items-center gap-3 mb-6 px-1">
       <div class="p-2 bg-cyan-100 rounded-lg flex items-center justify-center">
         <span class="material-icons text-cyan-600" style="font-size: 24px">groups</span>
       </div>
-      <h2 class="text-xl font-bold text-gray-800">Payers</h2>
+      <h2 class="text-2xl font-bold text-gray-800">Payers</h2>
     </div>
 
     @for (payer of roomStore.room()?.payers; track payer.id) {
@@ -189,7 +189,7 @@
         />
       </div>
       <button
-        class="p-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-xl hover:scale-105 transition-all hover:cursor-pointer flex items-center justify-center shadow-sm"
+        class="p-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-xl hover:scale-105 transition-all hover:cursor-pointer flex items-center justify-center shadow-sm min-w-[42px]"
         data-testid="add-payer"
         (click)="addPayer()"
       >

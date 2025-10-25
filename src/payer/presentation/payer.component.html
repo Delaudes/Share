@@ -3,11 +3,11 @@
   data-testid="payer"
 >
   <!-- Payer Header -->
-  <div class="flex items-center gap-3 mb-4 pb-3 border-b border-gray-100">
+  <div class="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
     <div class="p-2 bg-cyan-100 rounded-lg shadow-sm flex items-center justify-center">
       <span class="material-icons text-cyan-600" style="font-size: 24px">person</span>
     </div>
-    <div class="flex-1">
+    <div class="flex-1 min-w-0">
       <h3 class="text-xl font-bold text-gray-800">{{ payer().name }}</h3>
       <p class="text-xs text-gray-500 mt-0.5">
         {{ payer().expenses.length }} expense{{ payer().expenses.length !== 1 ? 's' : '' }}
@@ -17,7 +17,7 @@
       class="px-3 py-1.5 bg-gradient-to-br from-amber-50 to-amber-100 rounded-full border border-amber-200"
     >
       <p class="text-sm font-bold text-amber-700">
-        {{ payer().calculateTotalExpenses().toFixed(2) }}
+        {{ payer().calculateTotalExpenses() | amount }}
       </p>
     </div>
   </div>

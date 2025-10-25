@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { AddExpenseUseCase } from '../../expense/domain/add-expense.use-case';
 import { ExpenseDraft } from '../../expense/domain/expense-draft';
 import { ExpenseComponent } from '../../expense/presentation/expense.component';
+import { AmountPipe } from '../../room/pipes/amount.pipe';
 import { Payer } from '../domain/payer';
 
 @Component({
   selector: 'app-payer',
-  imports: [FormsModule, ExpenseComponent],
+  imports: [FormsModule, ExpenseComponent, AmountPipe],
   templateUrl: './payer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
