@@ -1,33 +1,65 @@
-<div class="rounded-lg shadow-sm w-full p-4 mt-4 font-semibold text-gray-700" data-testid="payer">
-  <h3 class="text-lg font-bold text-gray-700">{{ payer().name }}</h3>
+<div
+  class="bg-white rounded-2xl p-5 mb-4 shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
+  data-testid="payer"
+>
+  <!-- Payer Header -->
+  <div class="flex items-center gap-3 mb-4 pb-3 border-b border-gray-100">
+    <div class="p-2 bg-cyan-100 rounded-lg shadow-sm flex items-center justify-center">
+      <span class="material-icons text-cyan-600" style="font-size: 24px">person</span>
+    </div>
+    <div class="flex-1">
+      <h3 class="text-xl font-bold text-gray-800">{{ payer().name }}</h3>
+      <p class="text-xs text-gray-500 mt-0.5">
+        {{ payer().expenses.length }} expense{{ payer().expenses.length !== 1 ? 's' : '' }}
+      </p>
+    </div>
+    <div
+      class="px-3 py-1.5 bg-gradient-to-br from-amber-50 to-amber-100 rounded-full border border-amber-200"
+    >
+      <p class="text-sm font-bold text-amber-700">
+        {{ payer().calculateTotalExpenses().toFixed(2) }}
+      </p>
+    </div>
+  </div>
 
-  <div class="my-3">
+  <!-- Expenses List -->
+  <div class="space-y-2 mb-4">
     @for (expense of payer().expenses; track expense.id) {
     <app-expense [expense]="expense"></app-expense>
     }
   </div>
-  <div class="flex justify-between items-center gap-2">
-    <input
-      type="text"
-      placeholder="new expense name"
-      data-testid="expense-name"
-      [(ngModel)]="expenseName"
-      class="p-2 focus:border-cyan-400 placeholder:text-gray-400 outline-none border rounded-lg border-gray-200 text-xs w-2/3 transition-colors"
-    />
-    <input
-      onclick="this.select()"
-      type="number"
-      placeholder="0.00"
-      data-testid="expense-amount"
-      [(ngModel)]="expenseAmount"
-      class="p-2 focus:border-cyan-400 placeholder:text-gray-400 outline-none border rounded-lg border-gray-200 text-xs w-1/4 transition-colors"
-    />
-    <button
-      class="p-2 bg-cyan-700 hover:bg-cyan-800 text-white font-semibold rounded-lg hover:scale-105 transition-all hover:cursor-pointer flex items-center justify-center"
-      data-testid="add-expense"
-      (click)="addExpense()"
-    >
-      <span class="material-icons" style="font-size: 18px">add_task</span>
-    </button>
+
+  <!-- Add Expense Section -->
+  <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-4 border border-cyan-200">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="material-icons text-cyan-600" style="font-size: 18px">add_circle</span>
+      <p class="text-xs font-semibold text-cyan-700 uppercase tracking-wide">Add Expense</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-2">
+      <input
+        type="text"
+        placeholder="Expense name..."
+        data-testid="expense-name"
+        [(ngModel)]="expenseName"
+        class="flex-1 p-2.5 bg-white rounded-lg border border-cyan-200 focus:border-cyan-400 outline-none placeholder:text-gray-400 text-sm font-medium text-gray-800 transition-colors shadow-sm"
+      />
+      <div class="flex gap-2">
+        <input
+          onclick="this.select()"
+          type="number"
+          placeholder="0.00"
+          data-testid="expense-amount"
+          [(ngModel)]="expenseAmount"
+          class="flex-1 sm:w-24 p-2.5 bg-white rounded-lg border border-cyan-200 focus:border-cyan-400 outline-none placeholder:text-gray-400 text-sm font-medium text-gray-800 transition-colors shadow-sm"
+        />
+        <button
+          class="p-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-lg hover:scale-105 transition-all hover:cursor-pointer flex items-center justify-center shadow-sm min-w-[42px]"
+          data-testid="add-expense"
+          (click)="addExpense()"
+        >
+          <span class="material-icons" style="font-size: 20px">add_task</span>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
