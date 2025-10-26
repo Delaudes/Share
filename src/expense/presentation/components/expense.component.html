@@ -1,0 +1,28 @@
+<div
+  data-testid="expense"
+  class="flex justify-between items-center p-3 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all"
+>
+  <div class="flex items-center gap-3 flex-1 min-w-0">
+    <div class="p-1.5 bg-cyan-100 rounded-lg flex items-center justify-center">
+      <span class="material-icons text-cyan-600" style="font-size: 16px">receipt</span>
+    </div>
+    <span class="text-sm font-semibold text-gray-800 truncate">
+      {{ expense().name }}
+    </span>
+  </div>
+  <div class="flex items-center gap-2">
+    <span
+      class="text-sm px-3 py-1.5 bg-gradient-to-br from-amber-50 to-amber-100 text-amber-700 font-bold rounded-full border border-amber-200 whitespace-nowrap"
+    >
+      {{ expense().amount | amount }}
+    </span>
+    <button
+      data-testid="delete-expense"
+      (click)="deleteExpense()"
+      class="p-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-lg hover:scale-105 transition-all hover:cursor-pointer flex items-center justify-center shadow-sm min-w-[36px]"
+      title="Delete expense"
+    >
+      <span class="material-icons" style="font-size: 16px">delete</span>
+    </button>
+  </div>
+</div>
