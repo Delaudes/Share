@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AmountPipe } from '../../../amount/presentation/pipes/amount.pipe';
+import { BalanceComponent } from '../../../balance/presentation/components/balance.component';
 import { AddPayerUseCase } from '../../../payer/domain/use-cases/add-payer.use-case';
 import { PayerComponent } from '../../../payer/presentation/components/payer.component';
 import { ROUTER_SERVICE_TOKEN } from '../../../router/infrastructure/ports/router.service';
@@ -9,7 +9,7 @@ import { LoadRoomUseCase } from '../../domain/use-cases/load-room.use-case';
 
 @Component({
   selector: 'app-room',
-  imports: [FormsModule, PayerComponent, AmountPipe,],
+  imports: [FormsModule, PayerComponent, BalanceComponent],
   templateUrl: './room.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

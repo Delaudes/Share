@@ -3,6 +3,7 @@ import { Spectator, createComponentFactory } from "@ngneat/spectator";
 import { FakeExpenseService } from "../../../expense/domain/fakes/fake-expense.service";
 import { ExpenseDraft } from "../../../expense/domain/models/expense-draft";
 import { AddExpenseUseCase } from "../../../expense/domain/use-cases/add-expense.use-case";
+import { DeleteExpenseUseCase } from "../../../expense/domain/use-cases/delete-expense.use-case";
 import { ExpenseComponent } from "../../../expense/presentation/components/expense.component";
 import { Room } from "../../../room/domain/models/room";
 import { ReactiveRoomStore } from "../../../room/infrastructure/adapters/stores/reactive-room.store";
@@ -23,6 +24,7 @@ describe("PayerComponent", () => {
             provide: AddExpenseUseCase,
             useFactory: () => addExpenseUseCase
         },
+        ...provideChildrensDependencies()
         ],
     })
 
@@ -34,7 +36,7 @@ describe("PayerComponent", () => {
 
         spectator = createComponent({
             props: {
-                payer: new Payer('payer-001', 'John', [])
+                payer: reactiveRoomStore.getRoom()!.payers[0]
             }
         })
     });
@@ -68,10 +70,18 @@ describe("PayerComponent", () => {
         expect(spectator.queryAll(ExpenseComponent).length).toEqual(2)
     })
 
+    function provideChildrensDependencies() {
+        return [
+
+            {
+                provide: DeleteExpenseUseCase,
+                useFactory: () => new DeleteExpenseUseCase(new FakeExpenseService(), reactiveRoomStore)
+            }]
+    }
+
     async function clickAndWait(selector: string) {
         spectator.click(selector);
-        await Promise.resolve();
-        await Promise.resolve();
-        spectator.detectChanges()
+        await new Promise(resolve => setTimeout(resolve, 0));
+        spectator.setInput('payer', reactiveRoomStore.room()!.payers[0]);
     }
 })

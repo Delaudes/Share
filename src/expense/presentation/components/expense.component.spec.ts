@@ -51,8 +51,5 @@ describe('ExpenseComponent', () => {
 
     async function clickAndWait(selector: string) {
         spectator.click(selector);
-        await Promise.resolve();
-        await Promise.resolve();
-        spectator.detectChanges()
     }
 })

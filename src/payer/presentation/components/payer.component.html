@@ -10,7 +10,7 @@
     <div class="flex-1 min-w-0">
       <h3 class="text-xl font-bold text-gray-800">{{ payer().name }}</h3>
       <p class="text-xs text-gray-500 mt-0.5">
-        {{ payer().expenses.length }} expense{{ payer().expenses.length !== 1 ? 's' : '' }}
+        {{ payer().expenses.length }} expense{{ payer().expenses.length > 1 ? 's' : '' }}
       </p>
     </div>
     <div

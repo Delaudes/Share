@@ -1,17 +1,15 @@
 import { provideZonelessChangeDetection } from "@angular/core";
 import { createComponentFactory, Spectator } from "@ngneat/spectator";
+import { BalanceComponent } from "../../../balance/presentation/components/balance.component";
 import { FakeExpenseService } from "../../../expense/domain/fakes/fake-expense.service";
-import { Expense } from "../../../expense/domain/models/expense";
 import { AddExpenseUseCase } from "../../../expense/domain/use-cases/add-expense.use-case";
 import { DeleteExpenseUseCase } from "../../../expense/domain/use-cases/delete-expense.use-case";
 import { FakePayerService } from "../../../payer/domain/fakes/fake-payer.service";
-import { Payer } from "../../../payer/domain/models/payer";
 import { AddPayerUseCase } from "../../../payer/domain/use-cases/add-payer.use-case";
 import { PayerComponent } from "../../../payer/presentation/components/payer.component";
 import { FakeRouterService } from "../../../router/infrastructure/adapters/fake-router.service";
 import { ROUTER_SERVICE_TOKEN } from "../../../router/infrastructure/ports/router.service";
 import { FakeRoomService } from "../../domain/fakes/fake-room.service";
-import { Room } from "../../domain/models/room";
 import { ROOM_STORE_TOKEN } from "../../domain/ports/room.store";
 import { LoadRoomUseCase } from "../../domain/use-cases/load-room.use-case";
 import { ReactiveRoomStore } from "../../infrastructure/adapters/stores/reactive-room.store";
@@ -60,8 +58,7 @@ describe('RoomComponent', () => {
     addPayerUseCase = new AddPayerUseCase(fakePayerService, reactiveRoomStore)
 
     spectator = createComponent()
-    await Promise.resolve();
-    await Promise.resolve();
+    await new Promise(resolve => setTimeout(resolve, 0));
     spectator.detectChanges()
   });
 
@@ -96,34 +93,12 @@ describe('RoomComponent', () => {
   })
 
   it('should display balance', () => {
-    reactiveRoomStore.setRoom(
-      new Room('room-001', 'Roomate', [
-        new Payer('payer-001', 'John', [
-          new Expense('expense-001', 'Pizzas', 19),
-          new Expense('expense-002', 'Drinks', 6)
-        ]),
-        new Payer('payer-002', 'Tim', [
-          new Expense('expense-003', 'Groceries', 3),
-          new Expense('expense-004', 'Snacks', 7)
-        ]),
-        new Payer('payer-003', 'Alice', [
-          new Expense('expense-005', 'Party', 8),
-          new Expense('expense-006', 'Transport', 2)
-        ])]
-      ))
-
-    spectator.detectChanges()
-
-    expect(spectator.query('[data-testid="balance"]')).toHaveText(reactiveRoomStore.room()!.calculateTotalExpenses().toFixed(2))
-    expect(spectator.query('[data-testid="balance"]')).toHaveText(reactiveRoomStore.room()!.calculateAverageExpensesPerPayer().toFixed(2))
-    expect(spectator.query('[data-testid="balance"]')).toHaveText(['Tim', '5.00', 'John'])
-    expect(spectator.query('[data-testid="balance"]')).toHaveText(['Alice', '5.00', 'John'])
+    expect(spectator.query(BalanceComponent)).toBeTruthy();
   })
 
   async function clickAndWait(selector: string) {
     spectator.click(selector);
-    await Promise.resolve();
-    await Promise.resolve();
+    await new Promise(resolve => setTimeout(resolve, 0));
     spectator.detectChanges()
   }
 

@@ -40,8 +40,7 @@ describe('HomeComponent', () => {
     getRoomListUseCase = new GetRoomListUseCase(fakeRoomService)
 
     spectator = createComponent()
-    await Promise.resolve();
-    await Promise.resolve();
+    await new Promise(resolve => setTimeout(resolve, 0));
     spectator.detectChanges()
   });
 
@@ -74,13 +73,8 @@ describe('HomeComponent', () => {
     expect(fakeRouterService.path).toEqual(`/rooms/${fakeRoomService.room.id}`)
   });
 
-
-
-
-
   async function clickAndWait(selector: string) {
     spectator.click(selector);
-    await Promise.resolve();
-    await Promise.resolve();
+    await new Promise(resolve => setTimeout(resolve, 0));
   }
 });

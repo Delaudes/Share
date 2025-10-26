@@ -1,0 +1,135 @@
+<div class="mb-8" data-testid="balance">
+  <details class="group">
+    <summary class="cursor-pointer list-none">
+      <!-- Balance Header -->
+      <div
+        class="flex items-center justify-center gap-3 group-open:mb-6 hover:bg-gray-50 rounded-2xl p-4 transition-all border-2 border-transparent group-hover:border-cyan-200 group-hover:shadow-sm"
+      >
+        <div
+          class="p-3 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-xl shadow-sm flex items-center justify-center group-hover:scale-105 transition-transform"
+        >
+          <span class="material-icons text-cyan-600" style="font-size: 32px">account_balance</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-800 group-hover:text-cyan-600 transition-colors">
+          Balance
+        </h2>
+        <div
+          class="ml-2 px-3 py-1 bg-cyan-100 rounded-full flex items-center gap-1 group-hover:bg-cyan-200 transition-colors"
+        >
+          <span class="text-xs font-semibold text-cyan-700 group-open:hidden">Show</span>
+          <span class="text-xs font-semibold text-cyan-700 hidden group-open:inline">Hide</span>
+          <span
+            class="material-icons text-cyan-600 group-open:rotate-180 transition-transform"
+            style="font-size: 20px"
+          >
+            expand_more
+          </span>
+        </div>
+      </div>
+    </summary>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <!-- Total Card -->
+      <div
+        class="relative overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-5 shadow-sm border border-amber-200"
+      >
+        <div
+          class="absolute top-0 right-0 w-24 h-24 bg-amber-200 rounded-full opacity-20 -mr-12 -mt-12"
+        ></div>
+        <div class="relative">
+          <div class="flex items-center gap-2 mb-2">
+            <span
+              class="material-icons text-amber-600 flex items-center justify-center"
+              style="font-size: 20px"
+              >payments</span
+            >
+            <p class="text-xs font-semibold text-amber-700 uppercase tracking-wide">Total</p>
+          </div>
+          <p class="text-3xl font-bold text-amber-700">
+            {{ roomStore.room()?.calculateTotalExpenses() | amount }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Average Card -->
+      <div
+        class="relative overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-5 shadow-sm border border-amber-200"
+      >
+        <div
+          class="absolute top-0 right-0 w-24 h-24 bg-amber-200 rounded-full opacity-20 -mr-12 -mt-12"
+        ></div>
+        <div class="relative">
+          <div class="flex items-center gap-2 mb-2">
+            <span
+              class="material-icons text-amber-600 flex items-center justify-center"
+              style="font-size: 20px"
+              >balance</span
+            >
+            <p class="text-xs font-semibold text-amber-700 uppercase tracking-wide">Average</p>
+          </div>
+          <p class="text-3xl font-bold text-amber-700">
+            {{ roomStore.room()?.calculateAverageExpensesPerPayer() | amount }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payments Section -->
+    <div class="rounded-2xl shadow-sm border border-gray-200 overflow-hidden bg-white">
+      <!-- Payments Header -->
+      <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b border-gray-200">
+        <div class="flex items-center gap-3">
+          <div class="p-2 bg-white rounded-lg shadow-sm flex items-center justify-center">
+            <span class="material-icons text-cyan-600" style="font-size: 20px">swap_horiz</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-800">Settlement Payments</h3>
+            <p class="text-xs text-gray-600 mt-0.5">Who owes whom</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payments List -->
+      <div class="divide-y divide-gray-100">
+        @for (payment of roomStore.room()?.calculateBalance()?.payments; track $index) {
+        <div class="p-6 hover:bg-gray-50 transition-colors">
+          <div class="flex items-center justify-between gap-4">
+            <!-- From Person -->
+            <div class="flex items-center gap-3 flex-1 min-w-0">
+              <div class="min-w-0 flex-1">
+                <p class="font-bold text-base text-gray-800 truncate">{{ payment.from }}</p>
+                <p class="text-xs text-gray-500 mt-0.5">Owes</p>
+              </div>
+            </div>
+
+            <!-- Arrow and Amount -->
+            <div class="flex flex-col items-center gap-1">
+              <div
+                class="flex items-center gap-2 bg-gradient-to-r from-amber-50 to-amber-100 px-4 py-2.5 rounded-full border border-amber-200 shadow-sm"
+              >
+                <span class="text-lg font-bold text-amber-700">
+                  {{ payment.amount | amount }}
+                </span>
+              </div>
+              <span
+                class="material-icons text-gray-400 flex items-center justify-center"
+                style="font-size: 18px"
+                >arrow_forward</span
+              >
+            </div>
+
+            <!-- To Person -->
+            <div class="flex items-center gap-3 flex-1 min-w-0 justify-end">
+              <div class="min-w-0 flex-1 text-right">
+                <p class="font-bold text-base text-gray-800 truncate">{{ payment.to }}</p>
+                <p class="text-xs text-gray-500 mt-0.5">Receives</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </details>
+</div>
