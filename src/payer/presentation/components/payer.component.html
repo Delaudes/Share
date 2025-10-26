@@ -41,19 +41,19 @@
         placeholder="Expense name..."
         data-testid="expense-name"
         [(ngModel)]="expenseName"
-        class="flex-1 p-2.5 bg-white rounded-lg border border-cyan-200 focus:border-cyan-400 outline-none placeholder:text-gray-400 text-sm font-medium text-gray-800 transition-colors shadow-sm"
+        class="flex-1 min-w-0 p-2.5 bg-white rounded-lg border border-cyan-200 focus:border-cyan-400 outline-none placeholder:text-gray-400 text-sm font-medium text-gray-800 transition-colors shadow-sm"
       />
-      <div class="flex gap-2">
+      <div class="flex gap-2 sm:flex-shrink-0 sm:min-w-[200px]">
         <input
           onclick="this.select()"
           type="number"
           placeholder="0.00"
           data-testid="expense-amount"
           [(ngModel)]="expenseAmount"
-          class="flex-1 sm:w-24 p-2.5 bg-white rounded-lg border border-cyan-200 focus:border-cyan-400 outline-none placeholder:text-gray-400 text-sm font-medium text-gray-800 transition-colors shadow-sm"
+          class="flex-1 min-w-[80px] p-2.5 bg-white rounded-lg border border-cyan-200 focus:border-cyan-400 outline-none placeholder:text-gray-400 text-sm font-medium text-gray-800 transition-colors shadow-sm"
         />
         <button
-          class="p-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-lg hover:scale-105 transition-all hover:cursor-pointer flex items-center justify-center shadow-sm min-w-[42px]"
+          class="p-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-lg hover:scale-105 transition-all hover:cursor-pointer flex items-center justify-center shadow-sm min-w-[42px] flex-shrink-0"
           data-testid="add-expense"
           (click)="addExpense()"
         >
