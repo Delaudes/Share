@@ -28,9 +28,16 @@
       <h2 class="text-2xl font-bold text-gray-800">Payers</h2>
     </div>
 
-    @for (payer of roomStore.room()?.payers; track payer.id) {
-    <app-payer [payer]="payer"></app-payer>
-    }
+    <!-- Horizontal Scroll Container -->
+    <div class="overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory">
+      <div class="flex gap-4 min-w-min">
+        @for (payer of roomStore.room()?.payers; track payer.id) {
+        <div class="w-[85vw] max-w-md flex-shrink-0 snap-center">
+          <app-payer [payer]="payer"></app-payer>
+        </div>
+        }
+      </div>
+    </div>
   </div>
 
   <!-- Fixed Bottom Add Payer Bar -->
