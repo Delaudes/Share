@@ -10,6 +10,7 @@ import { StoragePayerService } from "../../payer/infrastructure/adapters/service
 import { ROOM_SERVICE_TOKEN } from "../../room/domain/ports/room.service";
 import { ROOM_STORE_TOKEN } from "../../room/domain/ports/room.store";
 import { CreateRoomUseCase } from "../../room/domain/use-cases/create-room.use-case";
+import { DeleteRoomUseCase } from "../../room/domain/use-cases/delete-room.use-case";
 import { GetRoomListUseCase } from "../../room/domain/use-cases/get-room-list.use-case";
 import { LoadRoomUseCase } from "../../room/domain/use-cases/load-room.use-case";
 import { StorageRoomService } from "../../room/infrastructure/adapters/services/storage-room.service";
@@ -62,6 +63,10 @@ export const ROOM_PROVIDERS = [
     },
     {
         provide: GetRoomListUseCase,
+        deps: [ROOM_SERVICE_TOKEN]
+    },
+    {
+        provide: DeleteRoomUseCase,
         deps: [ROOM_SERVICE_TOKEN]
     },
 ]

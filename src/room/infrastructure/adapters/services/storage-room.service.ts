@@ -8,6 +8,7 @@ import { mapToRooms } from "../../mappers/storage-room.mapper";
 export class StorageRoomService implements RoomService {
     constructor(private readonly localStorageService: LocalStorageService, private readonly uuidService: UuidService) { }
 
+
     async create(roomName: string): Promise<Room> {
         const room = new Room(this.uuidService.generate(), roomName, [])
 
@@ -31,5 +32,13 @@ export class StorageRoomService implements RoomService {
         const rooms = mapToRooms(stringRooms);
 
         return new RoomList(rooms)
+    }
+
+    async delete(roomId: string): Promise<void> {
+        const stringRooms = this.localStorageService.getItem('share')
+        const rooms = mapToRooms(stringRooms);
+
+        const filteredRooms = rooms.filter((room) => !room.is(roomId))
+        this.localStorageService.setItem('share', JSON.stringify(filteredRooms))
     }
 }

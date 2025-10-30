@@ -2,6 +2,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { Spectator, createComponentFactory } from '@ngneat/spectator';
 import { FakeRoomService } from '../../../room/domain/fakes/fake-room.service';
 import { CreateRoomUseCase } from '../../../room/domain/use-cases/create-room.use-case';
+import { DeleteRoomUseCase } from '../../../room/domain/use-cases/delete-room.use-case';
 import { GetRoomListUseCase } from '../../../room/domain/use-cases/get-room-list.use-case';
 import { FakeRouterService } from '../../../router/infrastructure/adapters/fake-router.service';
 import { ROUTER_SERVICE_TOKEN } from '../../../router/infrastructure/ports/router.service';
@@ -14,6 +15,7 @@ describe('HomeComponent', () => {
   let fakeRoomService: FakeRoomService
   let createRoomUseCase: CreateRoomUseCase
   let getRoomListUseCase: GetRoomListUseCase
+  let deleteRoomUseCase: DeleteRoomUseCase
 
   const createComponent = createComponentFactory({
     component: HomeComponent,
@@ -30,6 +32,10 @@ describe('HomeComponent', () => {
       provide: GetRoomListUseCase,
       useFactory: () => getRoomListUseCase
     },
+    {
+      provide: DeleteRoomUseCase,
+      useFactory: () => deleteRoomUseCase
+    },
     ],
   })
 
@@ -38,6 +44,7 @@ describe('HomeComponent', () => {
     fakeRoomService = new FakeRoomService()
     createRoomUseCase = new CreateRoomUseCase(fakeRoomService)
     getRoomListUseCase = new GetRoomListUseCase(fakeRoomService)
+    deleteRoomUseCase = new DeleteRoomUseCase(fakeRoomService)
 
     spectator = createComponent()
     await new Promise(resolve => setTimeout(resolve, 0));
@@ -72,6 +79,17 @@ describe('HomeComponent', () => {
 
     expect(fakeRouterService.path).toEqual(`/rooms/${fakeRoomService.room.id}`)
   });
+
+  it('should delete room', async () => {
+    const roomId = 'room-001'
+    expect(spectator.queryAll('[data-testid="existing-room"]').length).toEqual(2)
+
+    await clickAndWait('[data-testid="delete-room"]');
+    spectator.detectChanges()
+
+    expect(fakeRoomService.deletedRoomId).toEqual(roomId)
+    expect(spectator.queryAll('[data-testid="existing-room"]').length).toEqual(1)
+  })
 
   async function clickAndWait(selector: string) {
     spectator.click(selector);

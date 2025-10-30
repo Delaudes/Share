@@ -22,13 +22,15 @@
     <h2 class="text-2xl font-bold text-gray-800">Your Rooms</h2>
   </div>
 
-  @for (room of roomList.rooms; track room.id) {
-  <button
-    class="w-full mb-4 bg-white rounded-2xl p-5 shadow-sm border border-gray-200 hover:shadow-md hover:border-cyan-200 transition-all hover:cursor-pointer group"
-    data-testid="existing-room"
-    (click)="routerService.navigate(`/rooms/${room.id}`)"
+  @for (room of roomList().rooms; track room.id) {
+  <div
+    class="w-full mb-4 bg-white rounded-2xl shadow-sm border border-gray-200 hover:shadow-md hover:border-cyan-200 transition-all group relative"
   >
-    <div class="flex items-center justify-between gap-4">
+    <button
+      class="w-full p-5 pr-16 hover:cursor-pointer text-left"
+      data-testid="existing-room"
+      (click)="routerService.navigate(`/rooms/${room.id}`)"
+    >
       <div class="flex items-center gap-3 flex-1 min-w-0">
         <div
           class="p-2 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-lg shadow-sm flex items-center justify-center group-hover:scale-105 transition-transform"
@@ -44,14 +46,21 @@
           <p class="text-xs text-gray-500 font-mono mt-0.5">{{ room.id }}</p>
         </div>
       </div>
+    </button>
+    <button
+      class="absolute top-1/2 -translate-y-1/2 right-3 w-10 h-10 flex items-center justify-center bg-white hover:bg-red-50 rounded-lg transition-all shadow-sm border border-gray-200 hover:border-red-200 z-10 group/delete hover:cursor-pointer"
+      data-testid="delete-room"
+      (click)="deleteRoom(room.id)"
+      title="Delete room"
+    >
       <span
-        class="material-icons text-gray-400 group-hover:text-cyan-600 transition-colors flex items-center justify-center"
-        style="font-size: 24px"
+        class="material-icons text-gray-400 group-hover/delete:text-red-600 transition-colors"
+        style="font-size: 20px"
       >
-        arrow_forward
+        delete
       </span>
-    </div>
-  </button>
+    </button>
+  </div>
   }
 </div>
 

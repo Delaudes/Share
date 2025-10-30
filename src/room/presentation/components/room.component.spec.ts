@@ -68,7 +68,7 @@ describe('RoomComponent', () => {
 
   it('should load room', async () => {
     expect(fakeRouterService.paramName).toEqual('id')
-    expect(fakeRoomService.roomId).toEqual(fakeRouterService.paramValue)
+    expect(fakeRoomService.createdRoomId).toEqual(fakeRouterService.paramValue)
   });
 
   it('should add payer', async () => {

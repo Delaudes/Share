@@ -7,8 +7,9 @@ export class FakeRoomService implements RoomService {
     roomList = new RoomList([
         new Room('room-001', 'Holidays', []), new Room('room-002', 'Roomate', [])
     ])
-    roomId?: string
+    createdRoomId?: string
     roomName?: string
+    deletedRoomId?: string
 
     async create(roomName: string): Promise<Room> {
         this.roomName = roomName
@@ -17,7 +18,7 @@ export class FakeRoomService implements RoomService {
     }
 
     async fetch(roomId: string): Promise<Room> {
-        this.roomId = roomId
+        this.createdRoomId = roomId
 
         return this.room
     }
@@ -25,5 +26,9 @@ export class FakeRoomService implements RoomService {
     async fetchAll(): Promise<RoomList> {
 
         return this.roomList
+    }
+
+    async delete(roomId: string): Promise<void> {
+        this.deletedRoomId = roomId
     }
 }

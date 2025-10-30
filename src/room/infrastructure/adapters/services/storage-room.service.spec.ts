@@ -66,4 +66,13 @@ describe('StorageRoomService', () => {
         expect(roomList).toEqual(new RoomList([]))
     })
 
+    it('should delete room from storage', async () => {
+        const roomId = 'room-002'
+
+        await storageRoomService.delete(roomId)
+
+        expect(fakeLocalStorageService.key).toEqual('share')
+        expect(fakeLocalStorageService.newItem).toEqual('[]')
+    })
+
 })

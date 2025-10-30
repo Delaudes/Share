@@ -18,7 +18,7 @@ describe('LoadRoomUseCase', () => {
 
         await loadRoomUseCase.execute(roomId)
 
-        expect(fakeRoomService.roomId).toEqual(roomId)
+        expect(fakeRoomService.createdRoomId).toEqual(roomId)
         expect(fakeRoomStore.getRoom()).toEqual(fakeRoomService.room)
     })
 })
